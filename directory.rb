@@ -32,8 +32,10 @@ def print_header
   puts "-------------".center(75, " ")
 end
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)".center(75, " ")
+  if students.length >= 1
+    students.each do |student|
+      puts "#{student[:name]} (#{student[:cohort]} cohort)".center(75, " ")
+    end
   end
 end
 def print_footer(students)
