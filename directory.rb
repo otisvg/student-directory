@@ -30,7 +30,7 @@ def print_header
   puts "The students of Villains Academy".center(75, " ")
   puts "-------------".center(75, " ")
 end
-def print
+def print_students_list
   if @students.length >= 1
     @students.each do |student|
       puts "#{student[:name]} (#{student[:cohort]} cohort)".center(75, " ")
@@ -49,7 +49,7 @@ end
 
 def show_students
   print_header
-  print
+  print_students_list
   print_footer
 end
 
