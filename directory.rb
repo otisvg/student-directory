@@ -6,10 +6,14 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp
-
+  puts "Please enter the name of the students cohort"
+  cohort = gets.chomp
   # while the name is NOT empty, repeat this code
-  while !name.empty? do
-    students << {name: name, cohort: :november}
+  if cohort.empty?
+    cohort = "november"
+  end
+  while !name.empty? && !cohort.empty? do
+    students << {name: name, cohort: :"#{cohort}"}
     puts "Now we have #{students.count} great students"
     # get another name from the user
     name = gets.chomp
