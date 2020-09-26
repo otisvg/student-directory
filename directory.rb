@@ -14,9 +14,14 @@ def input_students
   end
   while !name.empty? && !cohort.empty? do
     students << {name: name, cohort: :"#{cohort}"}
-    puts "Now we have #{students.count} great students"
+    if students.length == 1
+      puts "Now we have #{students.count} great student"
+    else
+      puts "Now we have #{students.count} great students"
+    end
     # get another name from the user
     name = gets.chomp
+    cohort = gets.chomp
   end
   # return the array of students
   students
