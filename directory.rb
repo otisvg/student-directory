@@ -1,5 +1,7 @@
 @students = []
 
+
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -13,7 +15,7 @@ def input_students
     cohort = "november"
   end
   while !name.empty? && !cohort.empty? do
-    @students << {name: name, cohort: :"#{cohort}"}
+    @students << {name: name, cohort: cohort.to_sym }
     if @students.length == 1
       puts "Now we have #{@students.count} great student"
     else
@@ -29,6 +31,7 @@ def print_header
   puts "The students of Villains Academy".center(75, " ")
   puts "-------------".center(75, " ")
 end
+
 def print_students_list
   if @students.length >= 1
     @students.each do |student|
@@ -64,16 +67,20 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "Student saved."
 end
 
 def load_students(filename = "students.csv")
   # open file for reading
   file = File.open(filename, "r")
   file.readlines.each do |line|
-    name, cohort = line.chomp.split(",")
+    name, cohort = line.chomp.split(',')
     @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
+  puts "-----------------------------------"
+  puts "Student list |#{filename}| loaded."
+  puts "-----------------------------------"
 end
 
 def try_load_students
@@ -81,9 +88,9 @@ def try_load_students
   return if filename.nil? # get out of the method if it isn't given
   if File.exists?(filename) # if it exists
     load_students(filename)
-     puts "Loaded #{@students.count} from #{filename}"
+    puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exist
-    puts "Sorry, #{filename} doesn't exist."
+    load_students("students.csv")
     exit # quit the program
   end
 end
@@ -112,5 +119,6 @@ def interactive_menu
   end
 end
 
-# nothing happens until we call the methods
+
+try_load_students
 interactive_menu
