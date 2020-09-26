@@ -4,7 +4,6 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # create an empty array
-  students = []
   # get the first name
   name = gets.chomp
   puts "Please enter the name of the students cohort"
@@ -67,9 +66,9 @@ def save_students
   file.close
 end
 
-def load_students
+def load_students(filename = "students.csv")
   # open file for reading
-  file = File.open("students.csv", "r")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
     @students << {name: name, cohort: cohort.to_sym}
