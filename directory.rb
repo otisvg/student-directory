@@ -5,9 +5,9 @@ def input_students
   puts "To finish, just hit return twice"
   # create an empty array
   # get the first name
-  name = gets.chomp
+  name = STDIN.gets.chomp
   puts "Please enter the name of the students cohort"
-  cohort = gets.chomp
+  cohort = STDIN.gets.chomp
   # while the name is NOT empty, repeat this code
   if cohort.empty?
     cohort = "november"
@@ -20,8 +20,8 @@ def input_students
       puts "Now we have #{@students.count} great students"
     end
     # get another name from the user
-    name = gets.chomp
-    cohort = gets.chomp
+    name = STDIN.gets.chomp
+    cohort = STDIN.gets.chomp
   end
 end
 # and then print them
@@ -76,6 +76,18 @@ def load_students(filename = "students.csv")
   file.close
 end
 
+def try_load_students
+  filename = ARGV.first # first argument from the command line
+  return if filename.nil? # get out of the method if it isn't given
+  if File.exists?(filename) # if it exists
+    load_students(filename)
+     puts "Loaded #{@students.count} from #{filename}"
+  else # if it doesn't exist
+    puts "Sorry, #{filename} doesn't exist."
+    exit # quit the program
+  end
+end
+
 def process(selection)
   case selection
   when "1"
@@ -96,7 +108,7 @@ end
 def interactive_menu
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
