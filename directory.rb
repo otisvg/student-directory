@@ -6,15 +6,10 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp
-  puts "How tall are you? (cm)"
-  height = gets.chomp
-  puts "How old are you?"
-  age = gets.chomp
-  puts "In which country were you born?"
-  birth_country = gets.chomp
+
   # while the name is NOT empty, repeat this code
   while !name.empty? do
-    students << {name: name, cohort: :november, height: height, age: age, birth_country: birth_country}
+    students << {name: name, cohort: :november}
     puts "Now we have #{students.count} great students"
     # get another name from the user
     name = gets.chomp
@@ -24,12 +19,12 @@ def input_students
 end
 # and then print them
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(75, " ")
+  puts "-------------".center(75, " ")
 end
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort). Height: #{student[:height]}, Age: #{student[:age]}, Birth Country: #{student[:birth_country]}"
+    puts "#{student[:name]} (#{student[:cohort]} cohort)".center(75, " ")
   end
 end
 def print_footer(students)
