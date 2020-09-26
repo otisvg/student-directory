@@ -5,9 +5,9 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.chop
   puts "Please enter the name of the students cohort"
-  cohort = gets.chomp
+  cohort = gets.chop
   # while the name is NOT empty, repeat this code
   if cohort.empty?
     cohort = "november"
@@ -20,8 +20,8 @@ def input_students
       puts "Now we have #{students.count} great students"
     end
     # get another name from the user
-    name = gets.chomp
-    cohort = gets.chomp
+    name = gets.chop
+    cohort = gets.chop
   end
   # return the array of students
   students
