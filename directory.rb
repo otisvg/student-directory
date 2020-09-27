@@ -48,6 +48,7 @@ def print_menu
   puts "2. Show the students"
   puts "3. Save the list to students.csv"
   puts "4. Load the list from students.csv"
+  puts "5. Print program source code"
   puts "9. Exit"
 end
 
@@ -78,9 +79,9 @@ def load_students(filename = "students.csv")
     @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
-  puts "-----------------------------------"
+  puts "--------------------------------"
   puts "Student list |#{filename}| loaded."
-  puts "-----------------------------------"
+  puts "--------------------------------"
 end
 
 def try_load_students
@@ -90,7 +91,6 @@ def try_load_students
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exist
-    load_students("students.csv")
     exit # quit the program
   end
 end
@@ -105,6 +105,8 @@ def process(selection)
     save_students
   when "4"
     load_students
+  when "5"
+    print_source
   when "9"
     exit
   else
@@ -117,6 +119,10 @@ def interactive_menu
     print_menu
     process(STDIN.gets.chomp)
   end
+end
+
+def print_source
+  puts File.read(__FILE__)
 end
 
 
